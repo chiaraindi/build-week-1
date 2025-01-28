@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-image: url(./asset/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* style navbar and logo */
+nav {
+  margin: 50px 0px 0px 60px;
+}
+
+#logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 100px;
+}
+/* style question and buttons */
+#questions {
+  background-color: aqua;
+  color: rgb(182, 203, 44);
+  margin: 140px 100px;
+  text-align: center;
+}
+#first-btns {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 80px;
+}
+#second-btns {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+.btn {
+  width: 360px;
+  height: 70px;
+  cursor: pointer;
+  border-radius: 60px;
+  background-color: transparent;
+  color: white;
+}
+/* style counting */
+footer {
+  margin-top: 170px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: white;
+}
