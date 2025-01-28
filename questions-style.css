@@ -24,26 +24,31 @@ nav {
   margin: 140px 100px;
   text-align: center;
 }
-#first-btns {
-  display: flex;
-  justify-content: center;
+#btns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 300px;
+  margin-left: 400px;
   gap: 20px;
   margin-top: 80px;
+
 }
-#second-btns {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
-}
+
 .btn {
-  width: 360px;
-  height: 70px;
-  cursor: pointer;
-  border-radius: 60px;
+  padding: 1rem 3rem;
+  border-radius: 30px;
+  border-top: 2px solid white;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
   background-color: transparent;
   color: white;
+  text-wrap: nowrap;
+  cursor: pointer;
 }
+
+.btn:hover 
+
 /* style counting */
 footer {
   margin-top: 170px;
