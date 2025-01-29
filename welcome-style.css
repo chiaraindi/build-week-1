@@ -13,32 +13,39 @@ body {
   margin-left: 50px;
   padding: 30px;
 }
+
 #logo {
   width: 150px;
   height: auto;
   margin-bottom: 100px;
 }
+
 #welcome-title {
   width: 600px;
   margin-left: 50px;
   font-size: 80px;
   line-height: 60px;
 }
+
 #sub-title {
   margin-top: 50px;
   margin-left: 50px;
   color: #d20094;
 }
+
 p {
   margin: 6px 0 40px 50px;
 }
+
 ul {
   margin-left: 75px;
   line-height: 25px;
 }
+
 footer {
-  margin: 120px 0 0 50px;
+  margin: 100px 0px 10px 50px;
 }
+
 input {
   margin-right: 10px;
   cursor: pointer;
@@ -47,7 +54,18 @@ input {
   height: 20px;
   background-color: transparent;
   border: 1px solid white;
+  position: relative;
 }
+
+input:checked::before {
+  content: '✔';
+  position: absolute;
+  top: -3px;
+  left: 3px;
+  color: white;
+  font-size: 16px;
+}
+
 a {
   background-color: aqua;
   color: black;
@@ -55,11 +73,21 @@ a {
   padding: 15px 50px;
   font-weight: bold;
   margin-left: 600px;
+  border: 2px solid aqua; 
+  transition: all 0.3s ease;
 }
-a:hover {
-  background-color: rgb(43, 20, 163);
+
+a.enabled {
+  cursor: pointer;
+  color: white;
+  border: 2px solid #00ffff;
+  background-color: #00ffff; 
+  box-shadow: 0 0 15px 5px rgba(0, 191, 255, 1), 0 0 25px 5px rgba(0, 191, 255, 1); 
+  transform: scale(1.1); 
 }
 
 span {
   font-weight: bold;
 }
+
+ 

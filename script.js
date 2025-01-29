@@ -93,6 +93,8 @@ const questions = [
     incorrect_answers: ["Python", "C", "Jakarta"],
   },
 ];
+
+
 let currentQuestion = 0;
 let score = 0;
 function showQuestion() {
