@@ -124,19 +124,22 @@ function showAnswers() {
     containerButton.appendChild(button);
     button.addEventListener("click", (event) => {
       const selectedAnswer = event.target.innerText;
-      const correctAnswer = questions[currentQuestion].correctAnswer;
+      const correctAnswer = questions[currentQuestion].correct_answer;
       if (selectedAnswer === correctAnswer) {
         score++
       }
       currentQuestion++
+      if (currentQuestion < questions.length) {
+        showQuestion(currentQuestion)
+        showAnswers()
+        removeTimer ()
+      }
     })
   });
 }
 showAnswers();
 
-function nextQuestion() {
-  
-}
+
 
 
 //! function for the timer
