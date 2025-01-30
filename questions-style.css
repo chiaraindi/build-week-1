@@ -68,7 +68,7 @@ main {
   cursor: pointer;
   font-size: 20px;
 }
-*/ .btn:hover {
+.btn:hover {
   background-color: #d20094;
 }
 .btn:active {
@@ -78,7 +78,9 @@ main {
 /* style counting */
 footer {
   color: white;
+  font-size: 24px;
 }
+
 footer span {
   color: #d20094;
 }

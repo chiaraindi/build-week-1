@@ -97,13 +97,15 @@ const questions = [
 //! function for the questions
 
 let currentQuestion = 0;
-let score = 0;
 function showQuestion() {
   const questionContainer = document.getElementById("question-container");
-
-  questionContainer.innerHTML = "";
+  questionContainer.innerHTML = ""; 
   const question = questions[currentQuestion].question;
   questionContainer.innerText = question;
+
+
+  const questionCounter = document.getElementById("question-counter");
+  questionCounter.innerHTML = `QUESTION ${currentQuestion + 1} <span>/${questions.length}</span>`;
 }
 showQuestion();
 
@@ -122,9 +124,10 @@ function showAnswers() {
 }
 showAnswers();
 
+
 //! function for the timer
 
-let time = 5;
+let time = 30;
 let interval = setInterval(function () {
   document.getElementById("timer").innerHTML = time + " " + "seconds";
   time = time - 1;
