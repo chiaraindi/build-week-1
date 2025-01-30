@@ -94,99 +94,80 @@ const questions = [
   },
 ];
 
-//! function for the questions
-let time = 30;
-let currentQuestion = 0;
-let score = 0;
+let currentQuestion = 0, score = 0, time = 30, interval, isTabVisible = true, answeredAfterTabChange = false;
 
-function showQuestion() {
-  const questionContainer = document.getElementById("question-container");
-  questionContainer.innerHTML = "";
-  const question = questions[currentQuestion].question;
-  questionContainer.innerText = question;
+const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 
+// Mostra la domanda e aggiorna il contatore
+const showQuestion = () => {
+  const question = questions[currentQuestion];
+  document.getElementById("question-container").innerText = question.question;
+  document.getElementById("question-counter").innerHTML = `QUESTION ${currentQuestion + 1} / ${questions.length}`;
+};
 
-  const questionCounter = document.getElementById("question-counter");
-  questionCounter.innerHTML = `QUESTION ${currentQuestion + 1} <span>/${questions.length}</span>`;
-}
-showQuestion();
+// Mostra le risposte
+const showAnswers = () => {
+  const containerButton = document.querySelector("#container-btns");
+  containerButton.innerHTML = "";
+  shuffle([...questions[currentQuestion].incorrect_answers, questions[currentQuestion].correct_answer])
+    .forEach((answer) => {
+      const button = document.createElement("button");
+      button.classList.add("btn");
+      button.innerText = answer;
+      button.onclick = () => {
+        // Controlla se il tab è visibile prima di incrementare il punteggio
+        if (answer === questions[currentQuestion].correct_answer && !answeredAfterTabChange) score++;
+        answeredAfterTabChange = false; // Reset flag dopo la risposta
+        nextQuestion();
+      };
+      containerButton.appendChild(button);
+    });
+};
 
-// answers shuffle
-function shuffle(answers) {
-  return answers.sort(() => Math.random() - 0.5)
-}
-
-
-//! function for the answers
-
-function showAnswers() {
-  const answers = questions[currentQuestion].incorrect_answers
-  answers.push(questions[currentQuestion].correct_answer);
-  const shuffleArray = shuffle(answers)
-  shuffleArray.forEach((answer) => {
-    const button = document.createElement("button");
-    button.innerText = answer;
-    button.setAttribute("class", "btn");
-    const containerButton = document.querySelector("#container-btns");
-    containerButton.appendChild(button);
-    button.addEventListener("click", (event) => {
-      const selectedAnswer = event.target.innerText;
-      const correctAnswer = questions[currentQuestion].correct_answer;
-      containerButton.innerHTML = ""
-      if (selectedAnswer === correctAnswer) {
-        score++
-      }
-      currentQuestion++
-      if (currentQuestion < questions.length) {
-        showQuestion()
-        showAnswers()
-        resetTimer()
-      } else {
-        endQuiz()
-      }
-    })
-  });
-}
-showAnswers();
-
-console.log(showAnswers)
-
-//! function for the timer
-
-let interval
-function startTimer() {
-  interval = setInterval(function () {
-    document.getElementById("timer").innerHTML = time + " " + "seconds";
-    time--;
-
-    if (time < 0) {
-      clearInterval(interval);
-    }
+// Timer
+const startTimer = () => {
+  interval = setInterval(() => {
+    document.getElementById("timer").innerText = `${time} seconds`;
+    if (--time < 0) nextQuestion();
   }, 1000);
-}
-function resetTimer() {
-  clearInterval(interval)
-  time = 30
-  startTimer()
-}
+};
 
-//! counter questions
-
-let counterQuestions = 1 / 10;
-let interactions = 0;
-
-function currentInteractiones(counterQuestions, interactions) {
-  for (let x = 0; x < interactions; x++) {
-    counterQuestions += 1;
+// Passa alla domanda successiva
+const nextQuestion = () => {
+  if (++currentQuestion < questions.length) {
+    showQuestion();
+    showAnswers();
+    resetTimer();
+  } else {
+    endQuiz();
   }
-  return counterQuestions++;
-}
-let finalResult = currentInteractiones(counterQuestions, interactions);
-console.log(finalResult);
+};
 
-function endQuiz() {
-  document.getElementById("question-container").innerText = `Hai ottenuto un punteggio di ${score} su ${questions.length}`
-  document.querySelector(".container-timer").remove()
-}
+// Reset del timer
+const resetTimer = () => {
+  clearInterval(interval);
+  time = 30;
+  startTimer();
+};
 
-window.onload = startTimer
+// Fine del quiz
+const endQuiz = () => {
+  document.getElementById("question-container").innerText = `Hai ottenuto un punteggio di ${score} su ${questions.length}`;
+  document.querySelector(".container-timer").remove();
+  document.querySelector("#container-btns").innerHTML = "";
+};
+
+// Gestione della visibilità della pagina
+document.addEventListener("visibilitychange", () => {
+  isTabVisible = !document.hidden;
+  if (!isTabVisible) {
+    alert("Attenzione! Hai cambiato tab. La risposta non verrà conteggiata.");
+    answeredAfterTabChange = true; // 
+  }
+});
+
+window.onload = () => {
+  showQuestion();
+  showAnswers();
+  startTimer();
+};
