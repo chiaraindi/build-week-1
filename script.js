@@ -112,20 +112,18 @@ function showQuestion() {
 showQuestion();
 
 // answers shuffle
-function shuffle(questions) {
-  for (let i = questions.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random()*(i+1))
-  [questions[i],questions[j]]=[questions[j],questions[i]] 
-  }
+function shuffle(answers) {
+  return answers.sort(() => Math.random() - 0.5)
 }
-shuffle(answer)
+
 
 //! function for the answers
 
 function showAnswers() {
-  const answers = questions[currentQuestion].incorrect_answers;
+  const answers = questions[currentQuestion].incorrect_answers
   answers.push(questions[currentQuestion].correct_answer);
-  answers.forEach((answer) => {
+  const shuffleArray = shuffle(answers)
+  shuffleArray.forEach((answer) => {
     const button = document.createElement("button");
     button.innerText = answer;
     button.setAttribute("class", "btn");
@@ -151,6 +149,7 @@ function showAnswers() {
 }
 showAnswers();
 
+console.log(showAnswers)
 
 //! function for the timer
 
