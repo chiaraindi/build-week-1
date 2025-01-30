@@ -120,9 +120,16 @@ function showAnswers() {
     button.setAttribute("class", "btn");
     const containerButton = document.querySelector("#container-btns");
     containerButton.appendChild(button);
+    button.addEventListener("click", (event) => {
+      console.log (event.target.innerText)
+    })
   });
 }
 showAnswers();
+
+function nextQuestion() {
+
+}
 
 
 //! function for the timer
