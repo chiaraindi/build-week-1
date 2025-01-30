@@ -97,6 +97,8 @@ const questions = [
 //! function for the questions
 
 let currentQuestion = 0;
+let score = 0;
+
 function showQuestion() {
   const questionContainer = document.getElementById("question-container");
   questionContainer.innerHTML = ""; 
@@ -121,14 +123,19 @@ function showAnswers() {
     const containerButton = document.querySelector("#container-btns");
     containerButton.appendChild(button);
     button.addEventListener("click", (event) => {
-      console.log (event.target.innerText)
+      const selectedAnswer = event.target.innerText;
+      const correctAnswer = questions[currentQuestion].correctAnswer;
+      if (selectedAnswer === correctAnswer) {
+        score++
+      }
+      currentQuestion++
     })
   });
 }
 showAnswers();
 
 function nextQuestion() {
-
+  
 }
 
 
