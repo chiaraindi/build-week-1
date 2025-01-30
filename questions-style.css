@@ -6,6 +6,8 @@ body {
   background-image: url(./asset/bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Outfit", serif;
+  font-weight: lighter;
 }
 /* style navbar and logo */
 nav {
