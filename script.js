@@ -111,6 +111,15 @@ function showQuestion() {
 }
 showQuestion();
 
+// answers shuffle
+function shuffle(questions) {
+  for (let i = questions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1))
+  [questions[i],questions[j]]=[questions[j],questions[i]] 
+  }
+}
+shuffle(answer)
+
 //! function for the answers
 
 function showAnswers() {
@@ -168,7 +177,7 @@ let counterQuestions = 1 / 10;
 let interactions = 0;
 
 function currentInteractiones(counterQuestions, interactions) {
-  for (let i = 0; i < interactions; i++) {
+  for (let x = 0; x < interactions; x++) {
     counterQuestions += 1;
   }
   return counterQuestions++;
