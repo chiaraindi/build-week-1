@@ -125,21 +125,21 @@ function showAnswers() {
     button.addEventListener("click", (event) => {
       const selectedAnswer = event.target.innerText;
       const correctAnswer = questions[currentQuestion].correct_answer;
+      containerButton.innerHTML = ""
       if (selectedAnswer === correctAnswer) {
         score++
       }
       currentQuestion++
       if (currentQuestion < questions.length) {
-        showQuestion(currentQuestion)
+        showQuestion()
         showAnswers()
-        removeTimer ()
+      } else {
+        endQuiz()
       }
     })
   });
 }
 showAnswers();
-
-
 
 
 //! function for the timer
@@ -168,3 +168,7 @@ function currentInteractiones(counterQuestions, interactions) {
 }
 let finalResult = currentInteractiones(counterQuestions, interactions);
 console.log(finalResult);
+
+function endQuiz () {
+  document.getElementById("question-container").innerText = `Hai ottenuto un punteggio di ${score} su ${questions.length}`
+}
