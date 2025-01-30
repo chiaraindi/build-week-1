@@ -94,6 +94,7 @@ const questions = [
   },
 ];
 
+//! function for the questions
 
 let currentQuestion = 0;
 let score = 0;
@@ -105,6 +106,9 @@ function showQuestion() {
   questionContainer.innerText = question;
 }
 showQuestion();
+
+//! function for the answers
+
 function showAnswers() {
   const answers = questions[currentQuestion].incorrect_answers;
   answers.push(questions[currentQuestion].correct_answer);
@@ -117,3 +121,30 @@ function showAnswers() {
   });
 }
 showAnswers();
+
+//! function for the timer
+
+let time = 5;
+let interval = setInterval(function () {
+  document.getElementById("timer").innerHTML = time + " " + "seconds";
+  time = time - 1;
+
+  if (time < 0) {
+    clearInterval(interval);
+    time.innerHTML = document.getElementById("time");
+  }
+}, 1000);
+
+//! counter questions
+
+let counterQuestions = 1 / 10;
+let interactions = 0;
+
+function currentInteractiones(counterQuestions, interactions) {
+  for (let i = 0; i < interactions; i++) {
+    counterQuestions += 1;
+  }
+  return counterQuestions++;
+}
+let finalResult = currentInteractiones(counterQuestions, interactions);
+console.log(finalResult);

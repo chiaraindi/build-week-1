@@ -9,14 +9,30 @@ body {
 }
 /* style navbar and logo */
 nav {
-  margin: 50px 0px 0px 60px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 60px;
 }
 
 #logo {
   width: 150px;
   height: auto;
   margin-bottom: 100px;
+  /* margin-right: 600px; */
 }
+/* timer */
+.container-timer {
+  height: 130px;
+  width: 130px;
+  border: 3px solid #1995ad;
+  border-radius: 50%;
+}
+.timer {
+  text-align: center;
+  margin-top: 50px;
+  color: white;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -27,10 +43,10 @@ main {
 }
 /* style question and buttons */
 #question-container {
-  background-color: aqua;
-  color: rgb(182, 203, 44);
-  margin: 140px 100px;
+  color: white;
+  margin: 80px 80px;
   text-align: center;
+  font-size: 50px;
 }
 #container-btns {
   display: grid;
@@ -50,8 +66,9 @@ main {
   color: white;
   text-wrap: nowrap;
   cursor: pointer;
+  font-size: 20px;
 }
-.btn:hover {
+*/ .btn:hover {
   background-color: #d20094;
 }
 .btn:active {
@@ -60,7 +77,6 @@ main {
 
 /* style counting */
 footer {
-  margin-bottom: 50px;
   color: white;
 }
 footer span {
