@@ -95,13 +95,13 @@ const questions = [
 ];
 
 //! function for the questions
-
+let time = 30;
 let currentQuestion = 0;
 let score = 0;
 
 function showQuestion() {
   const questionContainer = document.getElementById("question-container");
-  questionContainer.innerHTML = ""; 
+  questionContainer.innerHTML = "";
   const question = questions[currentQuestion].question;
   questionContainer.innerText = question;
 
@@ -133,6 +133,7 @@ function showAnswers() {
       if (currentQuestion < questions.length) {
         showQuestion()
         showAnswers()
+        resetTimer()
       } else {
         endQuiz()
       }
@@ -144,16 +145,22 @@ showAnswers();
 
 //! function for the timer
 
-let time = 30;
-let interval = setInterval(function () {
-  document.getElementById("timer").innerHTML = time + " " + "seconds";
-  time = time - 1;
+let interval
+function startTimer() {
+  interval = setInterval(function () {
+    document.getElementById("timer").innerHTML = time + " " + "seconds";
+    time--;
 
-  if (time < 0) {
-    clearInterval(interval);
-    time.innerHTML = document.getElementById("time");
-  }
-}, 1000);
+    if (time < 0) {
+      clearInterval(interval);
+    }
+  }, 1000);
+}
+function resetTimer() {
+  clearInterval(interval)
+  time = 30
+  startTimer()
+}
 
 //! counter questions
 
@@ -169,6 +176,9 @@ function currentInteractiones(counterQuestions, interactions) {
 let finalResult = currentInteractiones(counterQuestions, interactions);
 console.log(finalResult);
 
-function endQuiz () {
+function endQuiz() {
   document.getElementById("question-container").innerText = `Hai ottenuto un punteggio di ${score} su ${questions.length}`
+  document.querySelector(".container-timer").remove()
 }
+
+window.onload = startTimer
